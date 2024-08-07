@@ -40,3 +40,26 @@ describe("pupulateBoard", () => {
     expect(gameboard.board).toBeDefined();
   });
 });
+
+describe("receive attacks", () => {
+  test("should return false if board was already attacked on specified coordinates", () => {
+    gameboard.receiveAttack(2, 3);
+    expect(gameboard.receiveAttack(2, 3)).toBe(false);
+  });
+
+  test("if attack was missed, push it to the missedAttacks array", () => {
+    const gameboard = new Gameboard();
+    gameboard.receiveAttack(0, 0);
+    expect(gameboard.missedAttacks).toContainEqual([0, 0]);
+  });
+
+  test("should call hit function if target was hit", () => {
+    const ship = new Ship(5);
+    const gameboard = new Gameboard();
+    gameboard.placeShip(ship, 0, 0, "horiozntal");
+    gameboard.receiveAttack(0, 0);
+    gameboard.receiveAttack(0, 0);
+
+    expect(ship.hits).toBe(1);
+  });
+});
