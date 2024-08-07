@@ -2,16 +2,21 @@ class Ship {
   constructor(length) {
     this.length = length;
     this.hits = 0;
-    this.isSunk = false;
+    this.sunk = false;
   }
 
-  hits() {
+  hit() {
     this.hits++;
+    this.isSunk();
   }
 
   isSunk() {
     if (this.hits === this.length) {
-      this.isSunk = true;
+      this.sunk = true;
     }
+
+    return false;
   }
 }
+
+module.exports = Ship;
