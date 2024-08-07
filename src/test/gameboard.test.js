@@ -62,4 +62,15 @@ describe("receive attacks", () => {
 
     expect(ship.hits).toBe(1);
   });
+
+  test("check if ship has sunk", () => {
+    const ship = new Ship(3);
+    const gameboard = new Gameboard();
+    gameboard.placeShip(ship, 5, 5, "horiozntal");
+    gameboard.receiveAttack(5, 5);
+    gameboard.receiveAttack(5, 6);
+    gameboard.receiveAttack(5, 7);
+
+    expect(ship.sunk).toBe(true);
+  });
 });
