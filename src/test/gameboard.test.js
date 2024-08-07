@@ -32,3 +32,11 @@ describe("isValidPlacement", () => {
     expect(gameboard.isValidPlacement(ship, 0, 0, "vertical")).toBe(true);
   });
 });
+
+describe("pupulateBoard", () => {
+  test("should populate the board with the correct ships", () => {
+    gameboard.populateBoard();
+
+    expect(gameboard.board).toBeDefined();
+  });
+});
