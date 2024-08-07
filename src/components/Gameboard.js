@@ -45,6 +45,30 @@ class Gameboard {
 
     return true;
   }
+
+  populateBoard() {
+    const array = [
+      new Ship(5),
+      new Ship(4),
+      new Ship(3),
+      new Ship(3),
+      new Ship(2),
+    ];
+
+    array.forEach((el) => {
+      let placed = false;
+      while (!placed) {
+        const x = Math.round(Math.random() * this.size);
+        const y = Math.round(Math.random() * this.size);
+        const direction = Math.random() > 0.5 ? "horizontal" : "vertical";
+
+        if (this.isValidPlacement(el, x, y, direction)) {
+          this.placeShip(el, x, y, direction);
+          placed = true;
+        }
+      }
+    });
+  }
 }
 
 module.exports = Gameboard;
