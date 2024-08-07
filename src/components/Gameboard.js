@@ -68,6 +68,27 @@ class Gameboard {
         }
       }
     });
+    z;
+  }
+
+  receiveAttack(x, y) {
+    const target = this.board[y][x];
+    const attacked = this.isAttacked([x, y]);
+
+    if (attacked) return false;
+    if (target === null) {
+      this.missedAttacks.push([x, y]);
+    } else {
+      target.hit();
+      this.hitAttacks.push([x, y]);
+    }
+  }
+
+  isAttacked(arr) {
+    return (
+      this.missedAttacks.some((el) => el[0] === arr[0] && el[1] === arr[1]) ||
+      this.hitAttacks.some((el) => el[0] === arr[0] && el[1] === arr[1])
+    );
   }
 }
 
