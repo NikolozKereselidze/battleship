@@ -68,7 +68,6 @@ class Gameboard {
         }
       }
     });
-    z;
   }
 
   receiveAttack(x, y) {
@@ -78,7 +77,7 @@ class Gameboard {
     if (attacked) return false;
     if (target === null) {
       this.missedAttacks.push([x, y]);
-    } else {
+    } else if (!target.sunk) {
       target.hit();
       this.hitAttacks.push([x, y]);
     }
